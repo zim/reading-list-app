@@ -115,6 +115,10 @@ const About = (props) => {
                             I had actually thought I could do this quickluu by adapting a recent, and quite similar task for OPFL, which i use Material ui, axios, and other basic fucntionality but i took a wrong turn with my React Router Params routing, So would have like to have reafactored that aspect completely in an ideal world. Anyway. due to time contraindt and other obligations I have I have sent it as is. Perhaps a good start for wher I can improve ... AS i say I know that ther areprobles // anyway.
 
                             thanks.
+
+                            I am sorry to say that in terms of testing, and specifically implementing some Jest tests, I have not done this my excuse is time constraint again, which is trus , but I certainly admit this is an area i need to grow in, and wish to grow in. I really enjoyed working with Jest, Dom testing library, and growing my knowledge in this area over the last 10 months at OPFL for sure. Geting in the field experience with the guidance from a great Tech Lead, who unfortunately left.
+
+
                         </BookListFull>
 
                     </Typography>
