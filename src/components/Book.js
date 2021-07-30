@@ -69,6 +69,7 @@ const useStyles = makeStyles((theme) => ({
 const Book =
 
     ({
+        booksFiltered,
         data,
         id,
         cover,
@@ -96,16 +97,12 @@ const Book =
         isListItem,
         setChecked,
     }) => {
+        console.log(booksFiltered)
         let { bookId } = useParams();
 
-        console.log(bookId);
-
-        console.log(data)
         if (data !== undefined) {
-            console.log('blaa')
 
             const bookItem = data.find(book => book.id === bookId);
-            console.log(bookItem)
 
             id = bookItem.id;
             cover = bookItem.cover;
@@ -122,40 +119,15 @@ const Book =
             complete = bookItem.complete;
         }
 
-        // const bookItem = data.find(book => book.id === bookId);
-        // console.log(bookItem)
 
-        console.log(id);
-        console.log(cover);
-        console.log(isbn);
-        console.log(title);
-        console.log(subTitle);
-        console.log(author);
-        console.log(published);
-        console.log(publisher);
-        console.log(pages);
-        console.log(description);
-        console.log(website);
-        console.log(dueDate);
-        console.log(complete);
-        //console.log(isListItem);
-        // const classes = useStyles();
-        // Simulated props for the purpose of the example
         const props = { backgroundColor: 'black', color: 'white' };
         // Pass the props as the first argument of useStyles()
         const classes = useStyles(props);
-
-        // //console.log(dueDate);
 
         const today = new Date();
 
         const dateToday = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
 
-        // //console.log(dateToday);
-
-        if (dueDate < dateToday) {
-            // //console.log("start time is lesser");
-        }
 
         // complete ? classes.todoComplete : (dueDate < dateToday) && classes.todoOverdue;
 
@@ -246,9 +218,14 @@ const Book =
                         <Grid item xs={12} sm={12}>
                             <CardContent>
 
-
                                 {(!isListItem) && <Typography variant="body1" component="p">
-                                    {description}
+                                    Other Books by {author}
+
+                                    {booksFiltered.map((book) => {
+                                        return (
+                                            <p><a href={book.website} target="_blank" rel="noreferrer">{book.title}</a></p>
+                                        );
+                                    })}
                                 </Typography>}
 
 

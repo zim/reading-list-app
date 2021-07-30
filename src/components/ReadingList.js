@@ -2,9 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import {
     BrowserRouter as Router,
-    Switch,
     Route,
-    Link,
     useRouteMatch,
     useParams
 } from "react-router-dom";
@@ -12,17 +10,13 @@ import {
 import BookForm from "./BookForm";
 import Book from './Book';
 import { makeStyles } from '@material-ui/core/styles';
-import clsx from 'clsx';
-import { Grid, Container, Box, Button, Modal, Backdrop, Fade, Typography } from '@material-ui/core';
+import { Grid, Box, Modal, Backdrop, Fade, Typography } from '@material-ui/core';
 
 const READINGLIST_URL = "https://hokodo-frontend-interview.netlify.com/data.json";
-
-console.log(READINGLIST_URL);
 
 const getReadingList = () => {
     return axios.get(READINGLIST_URL);
 };
-console.log(getReadingList())
 
 // cloud name dg8ckygz0
 const useStyles = makeStyles((theme) => ({
@@ -75,7 +69,6 @@ const useStyles = makeStyles((theme) => ({
 
 
 const BookList = () => {
-    console.log('function BookList() {');
     let match = useRouteMatch();
 
     const fetchData = async () => {
@@ -83,12 +76,9 @@ const BookList = () => {
             `https://hokodo-frontend-interview.netlify.com/data.json`
         );
         const data = await response.json();
-        console.log(data)
-        // this.setState({ data });
     };
 
     fetchData();
-
 
     const booksData = [
         {
@@ -216,10 +206,7 @@ const BookList = () => {
     ]
 
     let { bookId } = useParams();
-
     console.log(bookId)
-
-
 
     const classes = useStyles();
 
@@ -231,78 +218,55 @@ const BookList = () => {
     // const [bookItem, setBookItemm] = useState([]);
 
     const [booksSelected, setBooksSelected] = useState([]);
+    const [booksFiltered, setBooksFiltered] = useState([]);
     //Track is edit clicked or not
     const [editId, setEdit] = useState(null);
 
     const [inputValue, setInputValue] = useState("");
 
-
     const bookItem = books.find(book => book.id === bookId);
-    console.log(bookItem)
-
-    console.log(books)
-    // Set localStorage on initial mount
-    useEffect(() => {
-        console.log("use effect one");
-
-        // grab the Array item which matchs the id "2"
-
-
-        if (bookItem !== undefined) {
-            console.log(bookId)
-            // setBookParam(true)
-        }
-
-
-
-
-
-    }, []);
 
     // update localStorage on data change
     useEffect(() => {
-        console.log("use effect two");
-        // // console.log(books.length);
-        console.log(bookItem)
+        console.log('useEffect 1')
+        console.log(bookId)
         if (bookItem !== undefined) {
-            console.log(bookId)
             setBookParam(true)
+        }
+        if (bookId !== undefined) {
+            console.log("hoooorah create filters here?")
+            console.log(books)
+
+            let result = books.filter(book => {
+                return book.id === bookId
+            })
+
+            console.log(result[0].author)
+
+            const booksFilteredTemp = books.filter(book => book.author === result[0].author);
+            console.log(booksFilteredTemp)
+            setBooksFiltered(booksFilteredTemp)
         }
 
         // localStorage.setItem('books-omni-dev1', JSON.stringify(books));
 
-        if (books.length == 0) {
-            console.log('if (books.length == 0) {');
+        if (books.length === 0) {
             setBooksEmptyBool(false);
         }
+    }, [books, bookItem, bookId]);
 
-    }, [bookItem, bookId]);
 
-    // // console.log(books);
-
-    const [dev, setDev] = React.useState(true);
     const [open, setOpen] = React.useState(false);
 
     const handleOpen = () => {
-        // // console.log("const handleOpen = () => {");
-
-        // // console.log(editId);
         setOpen(true);
     };
 
     const handleClose = () => {
-        // // console.log("const handleClose = () => {");
         setOpen(false);
         setEdit(null);
     };
 
-    // clsx experiment button
-    const [openClsx, setOpenClsx] = React.useState(false);
-
-    const handleOpenClsx = () => {
-        // // console.log("const handleOpenClsx = () => {");
-        setOpenClsx(!openClsx);
-    };
 
     const handleToggle = (value) => () => {
 
@@ -320,7 +284,6 @@ const BookList = () => {
     };
 
     const handleEditChange = (id, text) => {
-        // console.log("handle edit channngge");
 
         setEdit(id);
         setInputValue(text);
@@ -331,8 +294,6 @@ const BookList = () => {
         if (!book.title || /^\s*$/.test(book.title)) {
             return;
         }
-
-        // // console.log(books.length);
         if (books.length == 0) {
             setBooksEmptyBool(!booksEmptyBool);
         }
@@ -349,7 +310,6 @@ const BookList = () => {
     };
 
     const completeBook = (id) => {
-        // // console.log("completeBook");
         let updatedBooks = books.map((book) => {
             if (book.id === id) {
                 book.complete = !book.complete;
@@ -360,7 +320,6 @@ const BookList = () => {
     };
 
     const editBook = (id, title, description, dueDate, complete, imagePath) => {
-        // console.log("const editBook = (id, title, description, dueDate, complete) => {");
 
         let editBooks = books.map((book) => {
             if (book.id === id) {
@@ -375,14 +334,6 @@ const BookList = () => {
         setBooks(editBooks);
         setEdit(false);
     };
-
-
-    const { foo, bar, baz } = classes;
-    const style = clsx(foo, bar, baz);
-
-    const [errorFetch, setErrorFetch] = useState(false);
-
-    const formData = new FormData();
 
     const BookListFull = () => {
 
@@ -429,10 +380,10 @@ const BookList = () => {
         )
     }
     const BookFull = () => {
-        console.log(bookItem);
         return (
 
             <Book
+                booksFiltered={booksFiltered}
                 key={bookItem.id}
                 id={bookItem.id}
                 cover={bookItem.cover}
@@ -467,12 +418,9 @@ const BookList = () => {
 
     }
 
-
-
     return (
 
         <React.Fragment>
-
 
             <Modal
                 aria-labelledby="transition-modal-title"
@@ -499,42 +447,24 @@ const BookList = () => {
                 )} />
 
             <Grid container spacing={3} className={classes.boxContainer}>
-
                 {!bookParam && <Grid item xs={12} className={classes.grid}>
                     <Box className={classes.box}>
                         <Typography variant="h3">Reading List</Typography>
-
-
                     </Box>
                 </Grid>
                 }
-
-
-
                 <Grid item xs={12}>
                     <Box className={classes.box}></Box>
                 </Grid>
-
                 <Grid item xs={12}>
-
-
-
                     {bookParam
                         ? <BookFull />
                         : <BookListFull />
                     }
-
-
                 </Grid>
-
-
             </Grid>
 
-
-
         </React.Fragment>
-
     );
 }
-
 export default BookList;
