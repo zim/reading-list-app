@@ -54,7 +54,7 @@ const NavBar = () => {
 
                 <Link href="/about" color="inherit" className={classes.menuItem}>
                     <Typography variant="h6" className={classes.title}>
-                        About
+                        Notes About Reading List App
                     </Typography>
 
                 </Link>
