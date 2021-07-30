@@ -1,25 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import {
     BrowserRouter as Router,
-    Switch,
-    Route,
     Link,
-    useRouteMatch,
     useParams,
 } from "react-router-dom";
 import { makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
-import { Grid, Container, Card, CardContent, CardActions, CardMedia, Typography, Checkbox, Button, Paper } from '@material-ui/core';
-// import { IconButton, FavoriteIcon, ShareIcon } from '@material-ui/icons';
-import IconButton from '@material-ui/core/IconButton';
-import FavoriteIcon from '@material-ui/icons/Favorite';
+import { Grid, Card, CardContent, Typography, Checkbox, Button, Paper } from '@material-ui/core';
 import EditIcon from '@material-ui/icons/Edit';
-import DeleteIcon from '@material-ui/icons/Delete';
-import ShareIcon from '@material-ui/icons/Share';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
-import { red } from "@material-ui/core/colors";
-
 
 const useStyles = makeStyles((theme) => ({
     root: {
