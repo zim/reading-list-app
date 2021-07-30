@@ -141,38 +141,12 @@ const About = (props) => {
                         I havent had time too set up my VSC environment on my MAC, regarding formatting, prettiffying etc so there are some, messy looking bits that, well are like that because in my work environment generally everything has being nicely formatted and pretified on save via eslint and some other VSC extensions, as well as in compile time on terminal etc.. Anyway apologies that it is not in a better state in this regard also...<br /><br />
                     </Typography>
 
-
+                    <Typography variant="h5" >Styling needs work:</Typography>
                     <Typography variant="body1" gutterBottom>
-                        We ask all candidates to complete this short exercise to help us evaluate their suitability for the roles we are recruiting for. We recommend spending between 2 and 4 hours. You will have an opportunity to discuss your solution, and the choices you made at the next interview stage, what you would have done with more time, what the next steps would be, etc.
+                        Using Material UI does give some nice out of the box responsive behaviour with the GRID system it has. But as we know the last 5% of any site takes the most work :)... so there is a lot of styling to be finalised for any finished product.. of course. <br /><br />
                     </Typography>
                     <Typography variant="body1" gutterBottom>
-                        ## Reading list<br />
-                        Create an application to display a recommended reading list using [React](https://reactjs.org/) and any suitable libraries.<br /><br />
-                        ### Acceptance criteria<br />
-                        * Fetch data from https://hokodo-frontend-interview.netlify.com/data.json<br /><br />
-
-                        * Display the list of books on a page, each book item showing<br />
-                        - Book title<br />
-                        - Author name<br />
-                        - Cover image (thumbnail size)
-                        - 'More information' link<br />
-
-                        * Clicking on the 'More information' link should open another page showing<br /><br />
-                        - Book title<br />
-                        - Author name<br />
-                        - ISBN<br />
-                        - Cover image (full size)<br />
-                        - A list of book titles by the same Author (with links)<br />
-                        - 'Back to list' link<br />
-
-                        ### Requirements<br /><br />
-                        A good solution will<br />
-                        * satisfy the acceptance criteria<br />
-                        * work on common web browsers<br />
-                        * have good test coverage<br />
-                        * have a functional user experience and design * use _appropriate_ front end libraries<br />
-                        * be production ready<br /><br />
-                        Please send us your solution or put it on a repository hosting service such as [GitHub](https://github.com) or [GitLab](https://gitlab.com) and don't forget to include a README file to tell us how to build and run the application.
+                        I have filtered the Books list on author to get links I have not dealt with the Prf, Mr Dr aspect... no time now.. I'm sure there is great functional quick ways this can be done. Actually the filtering is pretty rudimentary and should / could be refactored to make it more concise... <br /><br />
                     </Typography>
 
 
